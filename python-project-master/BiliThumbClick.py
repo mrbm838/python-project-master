@@ -23,9 +23,12 @@ edge_options.add_experimental_option("detach", True)
 edge = webdriver.Edge() # options=edge_options
 
 # 设置浏览器窗口全屏
-edge.maximize_window()
+# edge.maximize_window()
+# 设置浏览器窗口d大小
+edge.set_window_size(1920, 1280)
 
 # 打开网页
+# edge.get("https://live.bilibili.com/30800241?live_from=82001&broadcast_type=1&spm_id_from=333.1007.top_right_bar_window_dynamic.content.click")
 edge.get("https://live.bilibili.com/31846655?live_from=82001&broadcast_type=1&spm_id_from=333.1007.top_right_bar_window_dynamic.content.click")
 
 
@@ -45,7 +48,7 @@ def login():
 
 
     except:
-        print("-----------------------------登录失败-----------------------------")
+        print("-----------------------------失败-----------------------------")
 
 
 
@@ -56,7 +59,7 @@ def main(edge):
             try:
                 # thumb = edge.find_element(By.XPATH, '//*[@id="control-panel-ctnr-box"]/div[1]/div[2]/div[1]')
                 thumb = WebDriverWait(edge, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="control-panel-ctnr-box"]/div[1]/div[2]/div[1]')))
-                time.sleep(0.6)
+                time.sleep(0.3)
                 thumb.click()
             except (NoSuchElementException):
                 print("-------------------------NoSuchElementException---------------------------------")
@@ -68,8 +71,6 @@ def main(edge):
                 print("-------------------------ElementClickInterceptedException---------------------------------")
             except (InvalidElementStateException):
                 print("-------------------------InvalidElementStateException---------------------------------")
-            except (NoSuchElementException):
-                print("-------------------------NoSuchElementException---------------------------------")
             except (NoSuchWindowException):
                 print("-------------------------NoSuchWindowException---------------------------------")
             except (SessionNotCreatedException):
@@ -80,7 +81,8 @@ def main(edge):
                 print("-------------------------UnexpectedAlertPresentException---------------------------------")
             except (WebDriverException):
                 print("-------------------------WebDriverException---------------------------------")
-                continue
+
+            continue
 
     except:
         print("-----------------------------EXCEPT-----------------------------")
