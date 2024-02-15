@@ -28,8 +28,8 @@ edge = webdriver.Edge() # options=edge_options
 edge.set_window_size(1920, 1280)
 
 # 打开网页
-# edge.get("https://live.bilibili.com/30800241?live_from=82001&broadcast_type=1&spm_id_from=333.1007.top_right_bar_window_dynamic.content.click")
-edge.get("https://live.bilibili.com/31846655?live_from=82001&broadcast_type=1&spm_id_from=333.1007.top_right_bar_window_dynamic.content.click")
+edge.get("https://live.bilibili.com/30800241?live_from=82001&broadcast_type=1&spm_id_from=333.1007.top_right_bar_window_dynamic.content.click")
+# edge.get("https://live.bilibili.com/31846655?live_from=82001&broadcast_type=1&spm_id_from=333.1007.top_right_bar_window_dynamic.content.click")
 
 
 
@@ -88,8 +88,8 @@ def main(edge):
         print("-----------------------------EXCEPT-----------------------------")
 
 if __name__ == "__main__":
-    login()
-    time.sleep(20)
+    # login()
+    # time.sleep(20)
 
     # 开一个线程运行main方法    
     t = Thread(target=main, args=(edge,))
