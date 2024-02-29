@@ -28,8 +28,9 @@ edge = webdriver.Edge() # options=edge_options
 edge.set_window_size(1920, 1280)
 
 # 打开网页
-# edge.get("https://live.bilibili.com/30800241?live_from=82001&broadcast_type=1&spm_id_from=333.1007.top_right_bar_window_dynamic.content.click")
-edge.get("https://live.bilibili.com/31846655?live_from=82001&broadcast_type=1&spm_id_from=333.1007.top_right_bar_window_dynamic.content.click")
+# edge.get("https://live.bilibili.com/31735682?live_from=82001&broadcast_type=0&spm_id_from=333.1007.top_right_bar_window_dynamic.content.click") # 嘚嘚
+edge.get("https://live.bilibili.com/31846655?live_from=82001&broadcast_type=1&spm_id_from=333.1007.top_right_bar_window_dynamic.content.click") # 菠菜
+# edge.get("https://live.bilibili.com/31681075?live_from=82001&broadcast_type=1&spm_id_from=333.1007.top_right_bar_window_dynamic.content.click") # 依依
 
 
 
@@ -55,7 +56,7 @@ def login():
 
 def main(edge):
     try:
-        for i in range(1500):
+        for i in range(1200):
             try:
                 # thumb = edge.find_element(By.XPATH, '//*[@id="control-panel-ctnr-box"]/div[1]/div[2]/div[1]')
                 thumb = WebDriverWait(edge, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="control-panel-ctnr-box"]/div[1]/div[2]/div[1]')))
