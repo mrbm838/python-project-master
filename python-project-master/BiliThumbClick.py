@@ -18,23 +18,40 @@ from selenium.common.exceptions import UnexpectedAlertPresentException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-edge_options = webdriver.EdgeOptions()
-edge_options.add_experimental_option("detach", True)
-edge = webdriver.Edge() # options=edge_options
 
-# 设置浏览器窗口全屏
-# edge.maximize_window()
-# 设置浏览器窗口d大小
-edge.set_window_size(1920, 1280)
+def open_browser():
+    edge_options = webdriver.EdgeOptions()
+    edge_options.add_experimental_option("detach", True)
 
-# 打开网页
-# edge.get("https://live.bilibili.com/31735682?live_from=82001&broadcast_type=0&spm_id_from=333.1007.top_right_bar_window_dynamic.content.click") # 嘚嘚
-edge.get("https://live.bilibili.com/31846655?live_from=82001&broadcast_type=1&spm_id_from=333.1007.top_right_bar_window_dynamic.content.click") # 菠菜
-# edge.get("https://live.bilibili.com/31681075?live_from=82001&broadcast_type=1&spm_id_from=333.1007.top_right_bar_window_dynamic.content.click") # 依依
+    edge_options.add_argument('--ignore-certificate-errors') #忽略CERT证书错误
+
+    edge_options.add_argument('--ignore-ssl-errors') #忽略SSL错误
+
+    edge_options.add_argument('--disable-gpu')
+
+    edge_options.add_argument('--ignore-certificate-errors-spki-list')
+
+    edge_options.add_argument('--ignore-urlfetcher-cert-requests')
+
+    capability = edge_options.to_capabilities()
+
+    capability["acceptInsecureCerts"] = True
+    capability['acceptSslCerts'] = True
+
+    # 启动浏览器驱动
+    
+    
 
 
+    edge = webdriver.Edge()
+    edge.set_window_size(1920, 1280)
 
-def login():
+    edge.get("https://live.bilibili.com/31846655?live_from=82001&broadcast_type=1&spm_id_from=333.1007.top_right_bar_window_dynamic.content.click") # 菠菜
+    # edge.get("https://live.bilibili.com/31681075?live_from=82001&broadcast_type=1&spm_id_from=333.1007.top_right_bar_window_dynamic.content.click") # 依依
+
+    return edge
+
+def login(edge):
     try:
         time.sleep(1)
         login = edge.find_element(By.CLASS_NAME, "header-login-entry")
@@ -89,8 +106,9 @@ def main(edge):
         print("-----------------------------EXCEPT-----------------------------")
 
 if __name__ == "__main__":
-    # login()
-    # time.sleep(20)
+    edge = open_browser()
+
+    login(edge)
 
     # 开一个线程运行main方法    
     t = Thread(target=main, args=(edge,))
