@@ -36,18 +36,14 @@ def open_browser():
     capability = edge_options.to_capabilities()
 
     capability["acceptInsecureCerts"] = True
-    capability['acceptSslCerts'] = True
 
     # 启动浏览器驱动
-    
-    
+    edge = webdriver.Edge(options=edge_options)
 
-
-    edge = webdriver.Edge()
     edge.set_window_size(1920, 1280)
 
-    edge.get("https://live.bilibili.com/31846655?live_from=82001&broadcast_type=1&spm_id_from=333.1007.top_right_bar_window_dynamic.content.click") # 菠菜
-    # edge.get("https://live.bilibili.com/31681075?live_from=82001&broadcast_type=1&spm_id_from=333.1007.top_right_bar_window_dynamic.content.click") # 依依
+    # edge.get("https://live.bilibili.com/31846655?live_from=82001&broadcast_type=1&spm_id_from=333.1007.top_right_bar_window_dynamic.content.click") # 菠菜
+    edge.get("https://live.bilibili.com/31735682?live_from=85001&spm_id_from=333.1365.live_users.item.click") # 依依
 
     return edge
 
