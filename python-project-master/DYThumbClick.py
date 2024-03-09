@@ -42,16 +42,23 @@ def open_browser():
 
     edge.set_window_size(1920, 1280)
 
-    edge.get("https://live.bilibili.com/31846655?live_from=82001&broadcast_type=1&spm_id_from=333.1007.top_right_bar_window_dynamic.content.click") # 菠菜
-    # edge.get("https://live.bilibili.com/31735682?live_from=85001&spm_id_from=333.1365.live_users.item.click") # 嘚嘚
+    edge.get("https://live.douyin.com/314293054049")
 
     return edge
 
 def login(edge):
     try:
-        time.sleep(1)
-        login = edge.find_element(By.CLASS_NAME, "header-login-entry")
+        # i = 0
+        # flag = False
+        # while (i < 10 & flag == False):
+        #     i = i + 1
+        #     time.sleep(1)
+        #     login = edge.find_element(By.XPATH, '//*[@id="MS3tMtRG"]/button')
+        #     login.click()
+
+        login = WebDriverWait(edge, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="MS3tMtRG"]/button')))
         login.click()
+        return True
 
         # time.sleep(2)
         # account = edge.find_element(By.CLASS_NAME, "bili-mini-account")
@@ -69,11 +76,11 @@ def login(edge):
 
 def main(edge):
     try:
-        for i in range(1200):
+        for i in range(3200):
             try:
                 # thumb = edge.find_element(By.XPATH, '//*[@id="control-panel-ctnr-box"]/div[1]/div[2]/div[1]')
-                thumb = WebDriverWait(edge, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="control-panel-ctnr-box"]/div[1]/div[2]/div[1]')))
-                time.sleep(0.3)
+                thumb = WebDriverWait(edge, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="island_d3bbb"]/div[1]')))
+                time.sleep(0.2)
                 thumb.click()
                 print("-----------------------------Done-----------------------------")
             except (NoSuchElementException):
@@ -105,10 +112,9 @@ def main(edge):
 if __name__ == "__main__":
     edge = open_browser()
 
-    login(edge)
-
-    # 开一个线程运行main方法    
-    t = Thread(target=main, args=(edge,))
-    t.start()
+    if  login(edge):
+        # 开一个线程运行main方法    
+        t = Thread(target=main, args=(edge,))
+        t.start()
 
     # Thread.start(main(edge))
