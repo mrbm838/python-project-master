@@ -56,7 +56,7 @@ def login(edge):
         #     login = edge.find_element(By.XPATH, '//*[@id="MS3tMtRG"]/button')
         #     login.click()
 
-        login = WebDriverWait(edge, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="MS3tMtRG"]/button')))
+        login = WebDriverWait(edge, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="MS3tMtRG"]/button')))
         login.click()
         return True
 
@@ -82,7 +82,6 @@ def main(edge):
                 thumb = WebDriverWait(edge, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="island_d3bbb"]/div[1]')))
                 time.sleep(0.2)
                 thumb.click()
-                print("-----------------------------Done-----------------------------")
             except (NoSuchElementException):
                 print("-------------------------NoSuchElementException---------------------------------")
             except (ElementNotInteractableException):
@@ -105,6 +104,7 @@ def main(edge):
                 print("-------------------------WebDriverException---------------------------------")
 
             continue
+        print("-----------------------------Done-----------------------------")
 
     except:
         print("-----------------------------EXCEPT-----------------------------")
